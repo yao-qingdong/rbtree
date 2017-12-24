@@ -1,47 +1,33 @@
-#ifndef _NODE_TREE_H_
-#define _NODE_TREE_H_
-
-#include<iostream>
-
-using namespace std;
-
-enum NodeColor { RED, BLACK };
-
-template <typename T>
-struct node {
-	NodeColor color;
-	T value;
-	node<T> *father, *left_child, *right_child;
-};
 
 /** rbtree */
 template <typename T>
-class tree {
-public:
+class Tree {
+ public:
 	tree();
 	~tree();
-public:
-	node<T>* getroot();
-	void setroot(node<T>* r);
-	void addNode(node<T>* n);
+
+	Node<T>* root();
+	void set_root(Node<T>* r);
+	void add_node(Node<T>* n);
 	//void 
-	void traversal(node<T>* r);
-private:
-	node<T>* root;
+	void traversal(Node<T>* r);
+
+ private:
+	Node<T>* root;
 };
 
 template <typename T>
-tree<T>::tree() {
+Tree<T>::tree() {
 	root = NULL;// (node<T> *)malloc(sizeof(struct node<T>))
 }
 
 template <typename T>
-tree<T>::~tree() {
+Tree<T>::~tree() {
 	//free(root);
 }
 
 template <typename T>
-node<T>* tree<T>::getroot() {
+Node<T>* Tree<T>::root() {
 	if (NULL == root) {
 		return NULL;
 	}
@@ -49,13 +35,12 @@ node<T>* tree<T>::getroot() {
 }
 
 template <typename T>
-void tree<T>::setroot(node<T> *r) {
+void Tree<T>::set_root(Node<T> *r) {
 	root = r;
 }
 
-/** add node */
 template <typename T>
-void tree<T>::addNode(node<T> *n) {
+void Tree<T>::add_node(Node<T> *n) {
 	if (NULL == n) return;
 	if (NULL == root) {
 		root = n;
@@ -64,35 +49,33 @@ void tree<T>::addNode(node<T> *n) {
 		root->right_child = NULL;
 		return;
 	}
+
 	int value = n->value;
-	node<T>* parent = NULL;
-	node<T>* pointer = root;
+	Node<T>* parent = NULL;
+	Node<T>* pointer = root;
 	do {
 		parent = pointer;
 		if (value < pointer->value) {
 			pointer = pointer->left_child;
-		}
-		else if (value > pointer->value) {
+		} else if (value > pointer->value) {
 			pointer = pointer->right_child;
-		}
-		else {// existed£» 
+		} else {
+			// existed
 			return;
 		}
 	} while (NULL != pointer);
+	
 	n->father = parent;
 	if (value < parent->value) {
 		parent->left_child = n;
-	}
-	else {
+	} else {
 		parent->right_child = n;
 	}
 	// totate
-
 }
 
-/** DLR */
 template <typename T>
-void tree<T>::traversal(node<T> *n) {
+void Tree<T>::traversal(Node<T> *n) {
 	if (NULL != n) {
 		cout << n->value << endl;
 		traversal(n->left_child);
