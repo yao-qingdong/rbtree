@@ -1,4 +1,4 @@
-#ifndef _NOHE_H_
+#ifndef _NODE_H_
 #define _NODE_H_
 
 /** rbtree */
