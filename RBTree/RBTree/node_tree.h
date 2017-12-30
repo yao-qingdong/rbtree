@@ -1,3 +1,5 @@
+#ifndef _NODE_H_
+#define _NODE_H_
 
 /** rbtree */
 template <typename T>
