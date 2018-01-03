@@ -1,5 +1,6 @@
 #include <iostream>
-#include "node_tree.h"
+#include "node.h"
+#include "tree.h"
 
 int main() {
   
