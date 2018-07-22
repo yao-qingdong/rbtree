@@ -1,48 +1,50 @@
 #ifndef _TREE_H_
 #define _TREE_H_
 
+#include <iostream>
+
+using namespace std;
+
+struct Node {
+	int value;
+	struct Node *left_child, *right_child, *father;
+};
+
 /** rbtree */
-template <typename T>
 class Tree {
 public:
 	Tree();
 	~Tree();
 
-	Node<T>* root();
-	void set_root(Node<T>* r);
-	void AddNode(Node<T>* n);
-	void Traversal(Node<T>* r);
+	Node* get_root();
+	void set_root(Node* root);
+	void AddNode(Node* node);
+	void Traversal(Node* node);
 
 private:
-	Node<T>* root;
+	Node* root;
 };
 
-template <typename T>
-Tree<T>::Tree() {
-	root = NULL;// (node<T> *)malloc(sizeof(struct node<T>))
+Tree::Tree() {
+	root = NULL;// (node *)malloc(sizeof(struct node))
 }
 
-template <typename T>
-Tree<T>::~Tree() {
+Tree::~Tree() {
 	//free(root);
 }
 
-template <typename T>
-Node<T>* Tree<T>::root() {
+Node* Tree::get_root() {
 	if (NULL == root) {
 		return NULL;
 	}
 	return root;
 }
 
-template <typename T>
-void Tree<T>::set_root(Node<T> *r) {
+void Tree::set_root(Node *r) {
 	root = r;
 }
 
-template <typename T>
-void Tree<T>::AddNode(Node<T> *n) {
-	if (NULL == n) return;
+void Tree::AddNode(Node* n) {
 	if (NULL == root) {
 		root = n;
 		root->father = NULL;
@@ -52,8 +54,8 @@ void Tree<T>::AddNode(Node<T> *n) {
 	}
 
 	int value = n->value;
-	Node<T>* parent = NULL;
-	Node<T>* pointer = root;
+	Node* parent = NULL;
+	Node* pointer = root;
 	do {
 		parent = pointer;
 		if (value < pointer->value) {
@@ -78,13 +80,14 @@ void Tree<T>::AddNode(Node<T> *n) {
 	// totate
 }
 
-template <typename T>
-void Tree<T>::Traversal(Node<T> *n) {
-	if (NULL != n) {
-		cout << n->value << endl;
-		Traversal(n->left_child);
-		Traversal(n->right_child);
+void Tree::Traversal(Node* node) {
+	if (NULL == node) {
+		return;
 	}
+
+	cout << node->value << endl;
+	Traversal(node->left_child);
+	Traversal(node->right_child);
 }
 
 #endif
