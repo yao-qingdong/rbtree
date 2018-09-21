@@ -10,19 +10,19 @@ struct Node {
     struct Node *left_child, *right_child, *father;
 };
 
-class Tree {
+class tree {
 public:
-    Tree();
+    tree();
 
-    ~Tree();
+    ~tree();
 
     Node *get_root();
 
-    void set_root(Node *r);
+//    void set_root(Node *r);
 
-    void AddNode(Node *n);
+    void add_node(Node *n);
 
-    void Traversal(Node *node);
+    void traversal(Node *node);
 
 private:
     Node *root;

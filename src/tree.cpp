@@ -5,24 +5,24 @@
 #include <iostream>
 #include "../include/tree.h"
 
-Tree::Tree() {
+tree::tree() {
     root = nullptr;
 }
 
-Tree::~Tree() = default;
+tree::~tree() = default;
 
-Node *Tree::get_root() {
+Node *tree::get_root() {
     if (nullptr == root) {
         return nullptr;
     }
     return root;
 }
 
-void Tree::set_root(Node *r) {
-    root = r;
-}
+//void Tree::set_root(Node *r) {
+//    root = r;
+//}
 
-void Tree::AddNode(Node *n) {
+void tree::add_node(Node *n) {
     if (nullptr == root) {
         root = n;
         root->father = nullptr;
@@ -55,12 +55,12 @@ void Tree::AddNode(Node *n) {
     // rotate
 }
 
-void Tree::Traversal(Node *node) {
+void tree::traversal(Node *node) {
     if (nullptr == node) {
         return;
     }
 
     std::cout << node->value << std::endl;
-    Traversal(node->left_child);
-    Traversal(node->right_child);
+    traversal(node->left_child);
+    traversal(node->right_child);
 }

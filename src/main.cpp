@@ -2,14 +2,14 @@
 #include "../include/tree.h"
 
 int main() {
-    Tree tree;
+    tree tree;
     Node node1{};
 
     node1.value = 100;
-    tree.AddNode(&node1);
+    tree.add_node(&node1);
     Node *root = tree.get_root();
 
-    tree.Traversal(root);
+    tree.traversal(root);
 
     return 0;
 }
