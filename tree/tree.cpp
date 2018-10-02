@@ -8,15 +8,11 @@
 
 tree::tree() {
     root = nullptr;
-}
+};
 
 tree::~tree() = default;
 
 node *tree::get_root() {
-    if (nullptr == root) {
-        return nullptr;
-    }
-
     return root;
 }
 
@@ -24,29 +20,35 @@ void tree::add_node(node *n) {
     if (nullptr == n) {
         return;
     }
-    // if n->value is invalid
-
     if (nullptr == root) {
         root = n;
-        root->left_child = nullptr;
-        root->right_child = nullptr;
         return;
     }
 
-    node *tree_node = root;
-
+    node *cmp_node = root;
+    while (cmp_node != nullptr) {
+        if (n->value < cmp_node->value) {
+            if (cmp_node->left_child == nullptr) {
+                cmp_node->left_child = n;
+                break;
+            }
+            cmp_node = cmp_node->left_child;
+        } else if (n->value > cmp_node->value) {
+            if (cmp_node->right_child == nullptr) {
+                cmp_node->right_child = n;
+                break;
+            }
+            cmp_node = cmp_node->right_child;
+        }
+    }
 }
 
-void compare() {
-
-}
-
-void tree::traversal(node *n) {
+void tree::traversal_dlr(node *n) {
     if (nullptr == n) {
         return;
     }
 
     std::cout << n->value << std::endl;
-    traversal(n->left_child);
-    traversal(n->right_child);
+    traversal_dlr(n->left_child);
+    traversal_dlr(n->right_child);
 }

@@ -18,11 +18,9 @@ public:
 
     node *get_root();
 
-//    void set_root(Node *r);
-
     void add_node(node *n);
 
-    void traversal(node *n);
+    void traversal_dlr(node *n);
 
 private:
     node *root;

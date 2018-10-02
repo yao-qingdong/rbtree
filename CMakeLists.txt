@@ -3,4 +3,4 @@ project(rbtree)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(rbtree src/main.cpp tree/tree.cpp tree/tree.h)
+add_executable(rbtree src/main.cpp tree/tree.cpp tree/tree.h rbtree/rbtree.cpp)
